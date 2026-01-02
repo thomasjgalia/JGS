@@ -11,12 +11,12 @@
     /* Base typography for comfortable reading on small screens */
     :root {
       --font-body: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
-      --font-size: 17px;         /* slightly larger than default for phones */
-      --line-height: 1.6;        /* generous line-height for readability */
-      --max-width: 720px;        /* keeps lines from getting too long on tablets/desktop */
+      --font-size: 17px;
+      --line-height: 1.6;
+      --max-width: 720px;
       --text-color: #222;
       --muted-color: #555;
-      --link-color: #0a5bd8;     /* accessible contrast */
+      --link-color: #0a5bd8;
       --bg: #fff;
       --card: #f7f7f9;
       --border: #e6e6ee;
@@ -67,24 +67,22 @@
       margin: 18px 0 8px 0;
     }
 
-    p {
-      margin: 10px 0;
-    }
+    p { margin: 10px 0; }
 
     /* Links: bigger tap targets, clear focus and hover */
     a {
       color: var(--link-color);
       text-decoration: none;
-      padding: 2px 0;                /* small padding improves tap comfort */
+      padding: 2px 0;
     }
+    a:hover { text-decoration: underline; }
     a:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
       border-radius: 4px;
     }
-    a:hover { text-decoration: underline; }
 
-    /* Table of Contents: block links, compact and consistent spacing */
+    /* Table of Contents */
     .toc {
       background: var(--card);
       border: 1px solid var(--border);
@@ -95,36 +93,15 @@
     .toc a {
       display: block;
       margin: 6px 0;
-      font-weight: 600;               /* slightly bolder for scan-ability */
+      font-weight: 600;
     }
 
-    /* Back to top: subtle and consistent */
+    /* Back to top inline links */
     .backtop {
       margin: 14px 0 2px 0;
     }
     .backtop a {
       color: var(--muted-color);
-    }
-
-    /* Sticky floating “Top” button */
-    .floating-top {
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 999;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 999px;
-      padding: 12px 14px;
-      font-size: 0.95rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      cursor: pointer;
-    }
-    .floating-top:hover { opacity: 0.92; }
-    .floating-top:focus-visible {
-      outline: 3px solid #fff;
-      outline-offset: 3px;
     }
 
     /* Ensure anchor targets don’t sit flush at the top after jumping */
@@ -139,12 +116,53 @@
 
     /* Small devices: tune font sizes and padding slightly */
     @media (max-width: 420px) {
-      :root {
-        --font-size: 16.5px;
-      }
+      :root { --font-size: 16.5px; }
       .container { padding: 14px; }
       h1 { font-size: 1.5rem; }
       h2 { font-size: 1.2rem; }
+    }
+
+    /* Floating “Top” button: hidden by default; shown after scroll with smooth fade */
+    .floating-top {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 999;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      cursor: pointer;
+
+      /* hidden state */
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+
+      /* smooth fade/slide */
+      transition:
+        opacity 320ms ease-in-out,
+        transform 320ms ease-in-out;
+      will-change: opacity, transform;
+    }
+    .floating-top.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .floating-top:hover { opacity: 0.92; }
+    .floating-top:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .floating-top { transition: none; }
     }
   </style>
 </head>
@@ -247,7 +265,36 @@
     <p class="backtop"><a href="#top">Back to top</a></p>
   </div>
 
-  <!-- Floating back-to-top button -->
-  <a href="#top" class="floating-top" aria-label="Back to top">↑ Top</a>
+  <!-- Floating back-to-top button (fades/slides in after scroll) -->
+  <button class="floating-top" id="floatingTopBtn" aria-label="Back to top">↑ Top</button>
+
+  <!-- Script to toggle button visibility on scroll and handle click -->
+  <script>
+    (function () {
+      const btn = document.getElementById('floatingTopBtn');
+      const showAfter = 300; // px scrolled before showing the button
+
+      function toggleButton() {
+        if (window.scrollY > showAfter) {
+          btn.classList.add('show');
+        } else {
+          btn.classList.remove('show');
+        }
+      }
+
+      function scrollToTop() {
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) {
+          window.scrollTo(0, 0);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+
+      window.addEventListener('scroll', toggleButton, { passive: true });
+      window.addEventListener('load', toggleButton);
+      btn.addEventListener('click', scrollToTop);
+    })();
+  </script>
 </body>
-</html>
+</
