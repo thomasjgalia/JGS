@@ -5,126 +5,249 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Saint Leonie Aviat Novena (Text)</title>
+
+  <!-- Mobile-friendly CSS -->
   <style>
-    /* Optional: tidy up TOC spacing and link appearance */
+    /* Base typography for comfortable reading on small screens */
+    :root {
+      --font-body: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
+      --font-size: 17px;         /* slightly larger than default for phones */
+      --line-height: 1.6;        /* generous line-height for readability */
+      --max-width: 720px;        /* keeps lines from getting too long on tablets/desktop */
+      --text-color: #222;
+      --muted-color: #555;
+      --link-color: #0a5bd8;     /* accessible contrast */
+      --bg: #fff;
+      --card: #f7f7f9;
+      --border: #e6e6ee;
+      --accent: #0a5bd8;
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-color: #eaeaea;
+        --muted-color: #c0c0c0;
+        --link-color: #78aaff;
+        --bg: #0f1216;
+        --card: #171b21;
+        --border: #2a2f36;
+        --accent: #78aaff;
+      }
+      body { background: var(--bg); }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: var(--font-size);
+      line-height: var(--line-height);
+      color: var(--text-color);
+      background: var(--bg);
+    }
+
+    /* Content container with breathing room */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Headings: clear hierarchy, tighter spacing on mobile */
+    h1 {
+      font-size: 1.6rem;
+      line-height: 1.25;
+      margin: 0 0 8px 0;
+    }
+    h2 {
+      font-size: 1.25rem;
+      line-height: 1.3;
+      margin: 18px 0 8px 0;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    /* Links: bigger tap targets, clear focus and hover */
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+      padding: 2px 0;                /* small padding improves tap comfort */
+    }
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* Table of Contents: block links, compact and consistent spacing */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      margin: 8px 0 16px 0;
+    }
     .toc a {
-      display: block;            /* puts each entry on its own line */
-      margin: 4px 0;             /* small, consistent vertical spacing */
-      color: #0055aa;
-      text-decoration: none;
+      display: block;
+      margin: 6px 0;
+      font-weight: 600;               /* slightly bolder for scan-ability */
     }
-    .toc a:hover {
-      text-decoration: underline;
+
+    /* Back to top: subtle and consistent */
+    .backtop {
+      margin: 14px 0 2px 0;
     }
-    /* Optional: style the "Back to top" links consistently */
     .backtop a {
-      color: #555;
-      text-decoration: none;
+      color: var(--muted-color);
     }
-    .backtop a:hover {
-      text-decoration: underline;
+
+    /* Sticky floating “Top” button */
+    .floating-top {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 999;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      cursor: pointer;
     }
-    /* Optional: smooth scroll for anchor jumps (modern browsers) */
-    html {
-      scroll-behavior: smooth;
+    .floating-top:hover { opacity: 0.92; }
+    .floating-top:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* Ensure anchor targets don’t sit flush at the top after jumping */
+    :target {
+      scroll-margin-top: 70px;
+    }
+
+    /* Clean up inline spans copied from rich sources */
+    [style*="background-color: unset"] {
+      background-color: transparent !important;
+    }
+
+    /* Small devices: tune font sizes and padding slightly */
+    @media (max-width: 420px) {
+      :root {
+        --font-size: 16.5px;
+      }
+      .container { padding: 14px; }
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
   <div id="top"></div>
 
-  <h1>Saint Leonie Aviat Novena</h1>
-  <h2>For the healing of Joe Sullivan. Each night at 7:00 PM, January 2nd – January 10th</h2>
+  <div class="container">
+    <h1>Saint Leonie Aviat Novena</h1>
+    <h2>For the healing of Joe Sullivan, each night at 7:00 PM, January 2nd – January 10th</h2>
 
-  <h2>About St. Leonie Aviat</h2>
-  <p>St. Leonie Aviat (Frances de Sales) co-founded the Oblate Sisters of St. Francis de Sales and devoted her life to humble service, education, and the spiritual care of workers and youth.</p>
+    <h2>About St. Leonie Aviat</h2>
+    <p>St. Leonie Aviat (Frances de Sales) co-founded the Oblate Sisters of St. Francis de Sales and devoted her life to humble service, education, and the spiritual care of workers and youth.</p>
 
-  <h2>About the Novena</h2>
-  <p>This nine-day Novena invites prayerful reflection and petitions through daily quotes, prayers, and invocations associated with St. Leonie.</p>
+    <h2>About the Novena</h2>
+    <p>This nine-day Novena invites prayerful reflection and petitions through daily quotes, prayers, and invocations associated with St. Leonie.</p>
 
-  <h2>Table of Contents</h2>
-  <div class="toc">
-    <a href="#day1">Day 1 – January 2</a>
-    <a href="#day2">Day 2 – January 3</a>
-    <a href="#day3">Day 3 – January 4</a>
-    <a href="#day4">Day 4 – January 5</a>
-    <a href="#day5">Day 5 – January 6</a>
-    <a href="#day6">Day 6 – January 7</a>
-    <a href="#day7">Day 7 – January 8</a>
-    <a href="#day8">Day 8 – January 9</a>
-    <a href="#day9">Day 9 – January 10</a>
+    <h2>Table of Contents</h2>
+    <div class="toc">
+      <a href="#day1">Day 1 – January 2</a>
+      <a href="#day2">Day 2 – January 3</a>
+      <a href="#day3">Day 3 – January 4</a>
+      <a href="#day4">Day 4 – January 5</a>
+      <a href="#day5">Day 5 – January 6</a>
+      <a href="#day6">Day 6 – January 7</a>
+      <a href="#day7">Day 7 – January 8</a>
+      <a href="#day8">Day 8 – January 9</a>
+      <a href="#day9">Day 9 – January 10</a>
+    </div>
+
+    <h2 id="day1">Day 1 – January 2</h2>
+    <p><strong>“To do each thing as if I were face to face with e ff God and as if there were only Him...&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>When serving others, when rendering them service, when encouraging them, when sustaining them, I am doing the work that my good Master and Savior has etrusted to me.” (April 1871 “Petits Cahiers")</strong></span></p>
+    <p> Lord, You gave Saint Leonie the desire to live united with You, by the offering of every action and of her entire self. As she lived, she followed in Your footsteps, to reprint Your Gospel in herself and around her. Through her intercession, grant that we may faithfully live this life of union with You, so that we may be "good news" for those to whom we are sent.&nbsp;<span style="background-color: unset; text-align: inherit;">Amen</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, whose gaze was fixed on God, pray for us.</span></p>
+    <p><span style="background-color: unset; text-align: inherit;"></span><span style="background-color: unset; text-align: inherit;">St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, ardent witness of the Gospel, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, who was entirely given to the work of the Lord, pray for us.</span></p>
+    <p class="backtop"><a href="#top">Back to top</a></p>
+
+    <h2 id="day2">Day 2 – January 3</h2>
+    <p><strong>“You will never be able to surmount or arrange anything by yourself.&nbsp;&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Constant fidelity, however, to will to be all God’s, through the means that are given to us--the Directory and the observance--this fidelity will render you victorious.” (Thoughts)</strong> </span></p>
+    <p><span style="background-color: unset; text-align: inherit;">Lord, You gave strength and generosity in Your service to St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Out of love for You, and for the good of the Apostolates, she accepted tiredness, humiliations, sorrows and contradictions, so that in all things Your will might be done.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Through her intercession, grant us the grace we need to be faithful and generous in the service of every neighbor, as she was.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, generous amidst contradictions and suffering, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, faithful to offer every difficulty to the Lord, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of abandonment to the will of the Lord, pray for us.</span></p>
+    <p class="backtop"><a href="#top">Back to top</a></p>
+
+    <h2 id="day3">Day 3 – January 4</h2>
+    <p><strong>“Events seem to be showing us, more and more, that what is essential is that we know how to abandon ourselves to Divine Providence, accepting, from moment to moment, every will as well as every permission of the good Lord, saying a Fiat from the heart in every circumstance." (L</strong><span style="background-color: unset; text-align: inherit;"><strong>etters)</strong></span></p>
+    <p><span style="background-color: unset; text-align: inherit;">Lord, in spite of the difficulties and the hardships she encountered, at the height of the storm that threatened the Congregation and its Apostolates, St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales held firm and remained faithful, resisting fear and discouragement, drawing her strength and courage from her trust in You.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Through her intercession, grant us this same grace of fidelity and the creative daring to meet the needs of our time.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, who followed the signs of Providence daily, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, who knew how to hope against hope, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of confidence in trials, pray for us.</span></p>
+    <p class="backtop"><a href="#top">Back to top</a></p>
+
+    <h2 id="day4">Day 4 – January 5</h2>
+    <p><span style="background-color: unset; text-align: inherit;"><strong>“Strive to practice patience and charity, that the relationships among you may be good and happy.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>Let many things pass between the good Lord and you; this is the way to quell your first reactions and to acquire a | great mastery over yourself.” (Letters)</strong></span></p>
+    <p><span style="background-color: unset; text-align: inherit;">Lord, With her eyes fixed on you, St. Leonie Frances de Sales knew how to suffer and offer all that cost her in silence, so that charity and union of hearts might reign.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us Your grace: that we may know how to forget ourselves to work for the happiness of others, offering you, without any brooding, what pains or upsets us, that we may know how to be, as she was, instruments of peace.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen </span></p>
+    <p><span style="background-color: unset; text-align: inherit;">St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, charitable toward every neighbor, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of patience and of gentleness, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of selflessness for the happiness of others, pray for us.</span></p>
+    <p class="backtop"><a href="#top">Back to top</a></p>
+
+    <h2 id="day5">Day 5 – January 6</h2>
+    <p><strong>"A humble heart attracts the glance of Our Lord, the obedient soul obtains everything from his divine heart." (Letters)</strong> </p>
+    <p>Lord, St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales knew how to die to herself to surrender herself entirely to your love, and let You act in her and through her, allowing herself to be handled “like a ball of wax" so that your Will might be fulfilled.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us, through her intercession, never to put ourselves forward but humbly to place ourselves at your service, without being surprised at our own helplessness and weaknesses, but relying on your grace in all things.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, who loved being “little instrument of the Lord,” pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, whose life was a YES to the will of God, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of humility, pray for us.</span></p>
+    <p class="backtop"><a href="#top">Back to top</a></p>
+
+    <h2 id="day6">Day 6 – January 7</h2>
+    <p><span style="background-color: unset; text-align: inherit;"><strong>“Live in great intimacy with the Savior, doing nothing without Him.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>Make Him the absolute master of everything you have to do.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>With Him, all things will become easier for you."&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>(Letters)</strong> </span></p>
+    <p><span style="background-color: unset; text-align: inherit;">Lord, You inspired St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales with the desire to unite herself to you in all things, to shed her own will so as to follow the path that You marked out for her with love.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us, through her intercession, to become, like her, souls of prayer, Eucharistic souls, coming to draw from You the strengths we need to testify to Your love for all.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, whose joy is being heart to heart with the Savior, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, nourished and strengthened by the Eucharist, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of union with the Savior, pray for us.</span></p>
+    <p class="backtop"><a href="#top">Back to top</a></p>
+
+    <h2 id="day7">Day 7 – January 8</h2>
+    <p><strong>"Let us all be happy to be the little instruments of the good Lord, being employed according to His good pleasure.&nbsp;&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Let us find ourselves very happy to be handled by His hand, and let us practice refusing nothing, asking nothing, wanting nothing but His own good pleasure."&nbsp; (Letters)</strong></span></p>
+    <p>Lord, St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales was able to place in Your hand her whole being, all of her abilities, so that through them, your kingdom might come to this earth.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us, through her intercession, to know how to offer you what we are, our gifts and our talents, so that you may dispose of it according to Your good pleasure, for the good of all to whom we are sent.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, docile to the Holy Spirit, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of self-abnegation in all things, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of a life lived for God, pray for us.</span></p>
+    <p class="backtop"><a href="#top">Back to top</a></p>
+
+    <h2 id="day8">Day 8 – January 9</h2>
+    <p><strong>"Go to Our Lord by fulfilling your duty, and peace will not only remain in you, but you will procure it to others, you will spread it around you." (</strong><span style="background-color: unset; text-align: inherit;"><strong>Letters)</strong> </span></p>
+    <p><span style="background-color: unset; text-align: inherit;">Lord, Your love found no obstacle in St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales to Your self-manifestation to all and particularly to the poorest.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Through her intercession, increase these gifts in us: generosity, self-forgetfulness, and the desire to go to the margins of society.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, ever faithful to the present moment, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, attentive to the signs of the times from God, pray for us.</span></p>
+    <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of serene joy in the accomplishment of one’s duty through love, pray for us.</span></p>
+    <p class="backtop"><a href="#top">Back to top</a></p>
+
+    <h2 id="day9">Day 9 – January 10</h2>
+    <p><strong>"Holy Spirit, be my consolation, my strength in the battle.&nbsp;&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Wake me, Holy Spirit, understand the Will of God in order to follow it, not for a day, but always and in every encounter.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>Give me, too, the strength to overcome what nature loathes.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>May my mind be occupied only with understanding you, my heart with loving You, and my body with serving you."&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>(Petits Cahiers)</strong></span></p>
+    <p><span style="background-color: unset; text-align: inherit;">God of all goodness, you put in the heart of Saint Leonie Aviat an ardent desire to live humbly like Jesus, your Son.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">You taught her to surrender her will to yours and to have a constant charity toward all.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Inspired by her example, may we, too, forget ourselves entirely so that we may serve you better and work for the happiness of others.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us, through her intercession, the grace we ask of you, through our Lord Jesus Christ, your Son, who lives and reigns with you and the Holy Spirit, one God, for ever and ever.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
+    <p><strong>St.&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Leonie Frances de Sales, entirely abandoned to the Lord, pray for us.</strong></span></p>
+    <p><strong>St.&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Leonie Frances de Sales, example of grace and charity, pray for us.</strong></span></p>
+    <p><strong>St.&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Leonie Frances de Sales, intercessor and faithful servant, pray for us.</strong></span></p>
+    <p class="backtop"><a href="#top">Back to top</a></p>
   </div>
 
-  <h2 id="day1">Day 1 – January 2</h2>
-  <p><strong>“To do each thing as if I were face to face with e ff God and as if there were only Him...&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>When serving others, when rendering them service, when encouraging them, when sustaining them, I am doing the work that my good Master and Savior has etrusted to me.” (April 1871 “Petits Cahiers")</strong></span></p>
-  <p> Lord, You gave Saint Leonie the desire to live united with You, by the offering of every action and of her entire self. As she lived, she followed in Your footsteps, to reprint Your Gospel in herself and around her. Through her intercession, grant that we may faithfully live this life of union with You, so that we may be "good news" for those to whom we are sent.&nbsp;<span style="background-color: unset; text-align: inherit;">Amen</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, whose gaze was fixed on God, pray for us.</span></p>
-  <p><span style="background-color: unset; text-align: inherit;"></span><span style="background-color: unset; text-align: inherit;">St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, ardent witness of the Gospel, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, who was entirely given to the work of the Lord, pray for us.</span></p>
-  <p class="backtop"><a href="#top">Back to top</a></p>
-
-  <h2 id="day2">Day 2 – January 3</h2>
-  <p><strong>“You will never be able to surmount or arrange anything by yourself.&nbsp;&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Constant fidelity, however, to will to be all God’s, through the means that are given to us--the Directory and the observance--this fidelity will render you victorious.” (Thoughts)</strong> </span></p>
-  <p><span style="background-color: unset; text-align: inherit;">Lord, You gave strength and generosity in Your service to St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Out of love for You, and for the good of the Apostolates, she accepted tiredness, humiliations, sorrows and contradictions, so that in all things Your will might be done.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Through her intercession, grant us the grace we need to be faithful and generous in the service of every neighbor, as she was.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, generous amidst contradictions and suffering, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, faithful to offer every difficulty to the Lord, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of abandonment to the will of the Lord, pray for us.</span></p>
-  <p class="backtop"><a href="#top">Back to top</a></p>
-
-  <h2 id="day3">Day 3 – January 4</h2>
-  <p><strong>“Events seem to be showing us, more and more, that what is essential is that we know how to abandon ourselves to Divine Providence, accepting, from moment to moment, every will as well as every permission of the good Lord, saying a Fiat from the heart in every circumstance." (L</strong><span style="background-color: unset; text-align: inherit;"><strong>etters)</strong></span></p>
-  <p><span style="background-color: unset; text-align: inherit;">Lord, in spite of the difficulties and the hardships she encountered, at the height of the storm that threatened the Congregation and its Apostolates, St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales held firm and remained faithful, resisting fear and discouragement, drawing her strength and courage from her trust in You.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Through her intercession, grant us this same grace of fidelity and the creative daring to meet the needs of our time.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, who followed the signs of Providence daily, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, who knew how to hope against hope, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of confidence in trials, pray for us.</span></p>
-  <p class="backtop"><a href="#top">Back to top</a></p>
-
-  <h2 id="day4">Day 4 – January 5</h2>
-  <p><span style="background-color: unset; text-align: inherit;"><strong>“Strive to practice patience and charity, that the relationships among you may be good and happy.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>Let many things pass between the good Lord and you; this is the way to quell your first reactions and to acquire a | great mastery over yourself.” (Letters)</strong></span></p>
-  <p><span style="background-color: unset; text-align: inherit;">Lord, With her eyes fixed on you, St. Leonie Frances de Sales knew how to suffer and offer all that cost her in silence, so that charity and union of hearts might reign.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us Your grace: that we may know how to forget ourselves to work for the happiness of others, offering you, without any brooding, what pains or upsets us, that we may know how to be, as she was, instruments of peace.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen </span></p>
-  <p><span style="background-color: unset; text-align: inherit;">St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, charitable toward every neighbor, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of patience and of gentleness, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of selflessness for the happiness of others, pray for us.</span></p>
-  <p class="backtop"><a href="#top">Back to top</a></p>
-
-  <h2 id="day5">Day 5 – January 6</h2>
-  <p><strong>"A humble heart attracts the glance of Our Lord, the obedient soul obtains everything from his divine heart." (Letters)</strong> </p>
-  <p>Lord, St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales knew how to die to herself to surrender herself entirely to your love, and let You act in her and through her, allowing herself to be handled “like a ball of wax" so that your Will might be fulfilled.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us, through her intercession, never to put ourselves forward but humbly to place ourselves at your service, without being surprised at our own helplessness and weaknesses, but relying on your grace in all things.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, who loved being “little instrument of the Lord,” pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, whose life was a YES to the will of God, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of humility, pray for us.</span></p>
-  <p class="backtop"><a href="#top">Back to top</a></p>
-
-  <h2 id="day6">Day 6 – January 7</h2>
-  <p><span style="background-color: unset; text-align: inherit;"><strong>“Live in great intimacy with the Savior, doing nothing without Him.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>Make Him the absolute master of everything you have to do.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>With Him, all things will become easier for you."&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>(Letters)</strong> </span></p>
-  <p><span style="background-color: unset; text-align: inherit;">Lord, You inspired St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales with the desire to unite herself to you in all things, to shed her own will so as to follow the path that You marked out for her with love.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us, through her intercession, to become, like her, souls of prayer, Eucharistic souls, coming to draw from You the strengths we need to testify to Your love for all.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, whose joy is being heart to heart with the Savior, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, nourished and strengthened by the Eucharist, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of union with the Savior, pray for us.</span></p>
-  <p class="backtop"><a href="#top">Back to top</a></p>
-
-  <h2 id="day7">Day 7 – January 8</h2>
-  <p><strong>"Let us all be happy to be the little instruments of the good Lord, being employed according to His good pleasure.&nbsp;&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Let us find ourselves very happy to be handled by His hand, and let us practice refusing nothing, asking nothing, wanting nothing but His own good pleasure."&nbsp; (Letters)</strong></span></p>
-  <p>Lord, St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales was able to place in Your hand her whole being, all of her abilities, so that through them, your kingdom might come to this earth.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us, through her intercession, to know how to offer you what we are, our gifts and our talents, so that you may dispose of it according to Your good pleasure, for the good of all to whom we are sent.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, docile to the Holy Spirit, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of self-abnegation in all things, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of a life lived for God, pray for us.</span></p>
-  <p class="backtop"><a href="#top">Back to top</a></p>
-
-  <h2 id="day8">Day 8 – January 9</h2>
-  <p><strong>"Go to Our Lord by fulfilling your duty, and peace will not only remain in you, but you will procure it to others, you will spread it around you." (</strong><span style="background-color: unset; text-align: inherit;"><strong>Letters)</strong> </span></p>
-  <p><span style="background-color: unset; text-align: inherit;">Lord, Your love found no obstacle in St.&nbsp;</span><span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales to Your self-manifestation to all and particularly to the poorest.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Through her intercession, increase these gifts in us: generosity, self-forgetfulness, and the desire to go to the margins of society.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, ever faithful to the present moment, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, attentive to the signs of the times from God, pray for us.</span></p>
-  <p>St.&nbsp;<span style="background-color: unset; text-align: inherit;">Leonie Frances de Sales, model of serene joy in the accomplishment of one’s duty through love, pray for us.</span></p>
-  <p class="backtop"><a href="#top">Back to top</a></p>
-
-  <h2 id="day9">Day 9 – January 10</h2>
-  <p><strong>"Holy Spirit, be my consolation, my strength in the battle.&nbsp;&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Wake me, Holy Spirit, understand the Will of God in order to follow it, not for a day, but always and in every encounter.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>Give me, too, the strength to overcome what nature loathes.&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>May my mind be occupied only with understanding you, my heart with loving You, and my body with serving you."&nbsp;&nbsp;</strong></span><span style="background-color: unset; text-align: inherit;"><strong>(Petits Cahiers)</strong></span></p>
-  <p><span style="background-color: unset; text-align: inherit;">God of all goodness, you put in the heart of Saint Leonie Aviat an ardent desire to live humbly like Jesus, your Son.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">You taught her to surrender her will to yours and to have a constant charity toward all.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Inspired by her example, may we, too, forget ourselves entirely so that we may serve you better and work for the happiness of others.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Grant us, through her intercession, the grace we ask of you, through our Lord Jesus Christ, your Son, who lives and reigns with you and the Holy Spirit, one God, for ever and ever.&nbsp;&nbsp;</span><span style="background-color: unset; text-align: inherit;">Amen.</span></p>
-  <p><strong>St.&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Leonie Frances de Sales, entirely abandoned to the Lord, pray for us.</strong></span></p>
-  <p><strong>St.&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Leonie Frances de Sales, example of grace and charity, pray for us.</strong></span></p>
-  <p><strong>St.&nbsp;</strong><span style="background-color: unset; text-align: inherit;"><strong>Leonie Frances de Sales, intercessor and faithful servant, pray for us.</strong></span></p>
-  <p class="backtop"><a href="#top">Back to top</a></p>
+  <!-- Floating back-to-top button -->
+  <a href="#top" class="floating-top" aria-label="Back to top">↑ Top</a>
 </body>
 </html>
